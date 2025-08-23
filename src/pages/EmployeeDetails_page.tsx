@@ -1,6 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import EmployeeDetails from '../components/EmployeeDetails';
+import { EmployeeSalaryHistory } from '../components/Dashboards';
+import { Col, Container, Row } from 'react-bootstrap';
 
 
 const EmployeeDetails_page = () => {
@@ -8,9 +10,18 @@ const EmployeeDetails_page = () => {
   const numericId = id ? parseInt(id) : NaN;
 
   return (
-    <div>
-      <EmployeeDetails id={numericId} />
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <EmployeeDetails id={numericId} />
+        </Col>
+        <Col md={{ span: 7, order: 1 }}>
+          <EmployeeSalaryHistory id={numericId}/>
+        </Col>
+      </Row>
+      
+      
+    </Container>
   );
 };
 

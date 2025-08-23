@@ -31,7 +31,10 @@ const Departments = () => {
   return (
     <Container>
         <Row className="justify-content-md-center">
+            
             <Col lg={6}>
+                <h1>Departments</h1> 
+                <br />
                 <ListGroup>
                     {departments.map(department => (
                         <a className="page-link" href={`/departments/${department.id}/employees`}>

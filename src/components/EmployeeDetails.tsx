@@ -6,6 +6,7 @@ import type { Salary } from '../models/SalaryModel';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../api/config';
 import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { formatCurrency } from './Utils';
 
 interface Props {
   id: number;
@@ -23,16 +24,7 @@ const EmployeeDetails = ({id}:Props) => {
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
-    function formatCurrency(value: number, decimals = 2): string {
-      return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      }).format(value);
-    }
-
-
+    
     useEffect(() => {
         axios
           .get<Employee>(`${API_URL}/employees/${id}`)

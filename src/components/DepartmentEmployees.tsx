@@ -102,49 +102,49 @@ const DepartmentEmployees = ({id}:Props) => {
 
   return (
     <div>
-                    <h1>{departments.find((d) => d.id == id)?.deptName}</h1>
-                    <h2>Manager:</h2>
-                    <a className="page-link" href ={`/employees/${manager.at(0)?.id}`} ><h3>{manager.at(0)?.firstName}&nbsp;{manager.at(0)?.lastName}</h3></a>
-                    
-                    <br />
-                    <Container>
-                        <Row md="auto" className="justify-content-md-center">
-                            <Col >
-                                {pagination()}
-                            </Col>
-                        </Row>
-                    </Container>
-                    
-                    <br/>
-                    
-                    <Container>
-                        <Row className="justify-content-md-center">
-                            <Col lg={6}>
-                                <ListGroup className="pagination">
-                                    {employees.map(Employee => (
-                                    <ListGroup.Item className="page-item" key={Employee.id}>
-                                        <a className="page-link" href ={`/employees/${Employee.id}`}>
-                                            {Employee.firstName}&nbsp;{Employee.lastName}&nbsp;
-                                            
-                                        </a>
-                                        <p>Hire date:&nbsp;{Employee.hireDate ? `${Employee.hireDate[2]}/${Employee.hireDate[1]}/${Employee.hireDate[0]}` : '--'}</p>
-                                    </ListGroup.Item>
-                                        ))}
-                                </ListGroup>
-                            </Col>
-                        </Row>
-                    </Container>
-                    
-                    <br/>
-                    <Container>
-                        <Row md="auto" className="justify-content-md-center">
-                            <Col >
-                                {pagination()}
-                            </Col>
-                        </Row>
-                    </Container>
-                    <br/>
-                </div>
+        <h1>{departments.find((d) => d.id == id)?.deptName}</h1>
+        <h2>Manager:</h2>
+        <a className="page-link" href ={`/employees/${manager.at(0)?.id}`} ><h3>{manager.at(0)?.firstName}&nbsp;{manager.at(0)?.lastName}</h3></a>
+        
+        <br />
+        <Container>
+            <Row md="auto" className="justify-content-md-center">
+                <Col >
+                    {pagination()}
+                </Col>
+            </Row>
+        </Container>
+        
+        <br/>
+        
+        <Container>
+            <Row className="justify-content-md-center">
+                <Col lg={6}>
+                    <ListGroup className="pagination">
+                        {employees.map(Employee => (
+                        <ListGroup.Item className="page-item" key={Employee.id}>
+                            <a className="page-link" href ={`/employees/${Employee.id}`}>
+                                {Employee.firstName}&nbsp;{Employee.lastName}&nbsp;
+                                
+                            </a>
+                            <p>Hire date:&nbsp;{Employee.hireDate ? `${Employee.hireDate[2]}/${Employee.hireDate[1]}/${Employee.hireDate[0]}` : '--'}</p>
+                        </ListGroup.Item>
+                            ))}
+                    </ListGroup>
+                </Col>
+            </Row>
+        </Container>
+        
+        <br/>
+        <Container>
+            <Row md="auto" className="justify-content-md-center">
+                <Col >
+                    {pagination()}
+                </Col>
+            </Row>
+        </Container>
+        <br/>
+    </div>
   )
 }
 
