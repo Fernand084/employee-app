@@ -1,5 +1,3 @@
-import React from 'react';
-
 import EmployeeDetails from '../components/Employees';
 
 const Employees_page = () => {

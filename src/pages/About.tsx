@@ -1,4 +1,3 @@
-import React from 'react';
 import { aboutContent } from '../content/AboutSectionContent';
 import { Container } from 'react-bootstrap';
 

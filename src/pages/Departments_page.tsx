@@ -1,4 +1,3 @@
-import React from 'react'
 import Departments from '../components/Departments'
 import { Col, Container, Row } from 'react-bootstrap'
 import { ActiveEmployeesByDepartment, AverageSalaryByDepartment, TitlesHistoryByDepartment } from '../components/Dashboards'

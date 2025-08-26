@@ -1,4 +1,3 @@
-import React from 'react';
 import ListaUsuarios from '../components/ListaUsuariosTest';
 
 const Users: React.FC = () => {

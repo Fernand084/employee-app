@@ -1,5 +1,4 @@
 // src/pages/Home.tsx
-import React from 'react';
 import Message from '../components/Message';
 import { homeContent } from '../content/HomeContent';
 import { Link } from 'react-router-dom';

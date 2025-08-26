@@ -1,4 +1,3 @@
-import React from 'react'
 import { useParams } from 'react-router-dom';
 import DepartmentEmployees from '../components/DepartmentEmployees'
 import { Col, Container, Row } from 'react-bootstrap';
@@ -11,11 +10,11 @@ const DepartmentEmployees_page = () => {
     <Container>
       <Row>
         <Col>
-          <DepartmentEmployees id={id}/>
+          <DepartmentEmployees id={id!}/>
         </Col>
         <Col>
-          <GenderDistribution id={id}/>
-          <TopSalariesByDepartmentId id={id}/>
+          <GenderDistribution id={id!}/>
+          <TopSalariesByDepartmentId id={id!}/>
         </Col>
       </Row>
       
