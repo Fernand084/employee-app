@@ -6,5 +6,4 @@ export default axios.create({
   headers: {
     "Content-type": "application/json",
   },
-  // Elimina todos los headers Access-Control-Allow-*
 });
