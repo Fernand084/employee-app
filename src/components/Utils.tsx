@@ -21,7 +21,7 @@ export const createCustomTooltip = (
   formatFunction?: (value: number) => string
 ) => {
   return (props: TooltipProps<number, string>) => {
-    const { active, payload, label } = props;
+    const { active, payload, label }:{ active?: boolean; payload?: any; label?: string } = props;
 
     if (!active || !payload || !payload.length) {
       return null;
