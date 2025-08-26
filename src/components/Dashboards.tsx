@@ -235,7 +235,7 @@ export function AverageSalaryByDepartment(){
                 <XAxis  dataKey="deptName" angle={-45} textAnchor="end" interval={0} height={115} />
                 <YAxis />
                 <Tooltip content={CurrencyTooltip}/>
-                <Bar dataKey="averageSalary" fill="#67b94eff" animationDuration={1500} />
+                <Bar dataKey="averageSalary" fill="#e9ec0bff" animationDuration={1500} />
             </BarChart>
             </ResponsiveContainer>
         </Container>
@@ -368,15 +368,34 @@ export function EmployeeSalaryHistory({id}: SalaryProps){
 
 export function TopSalariesByDepartmentId({id}: Props){
     const [topSalaries, setTopSalaries] = useState<topSalaries[]>([]);
+    const [averageSalary,setAverageSalary] = useState<averageSalary[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() =>{
         const fetchData = async () => {
             try {
-                const res = await axios.get<topSalaries[]>(`${API_URL}/salary/${id}/highest`);
-                setTopSalaries(res.data);
-                setLoading(false);
+                axios
+                    .get<topSalaries[]>(`${API_URL}/salary/${id}/highest`)
+                    .then(res => {
+                        setTopSalaries(res.data);
+                        setLoading(false);
+                    })
+                    .catch(err => {
+                        console.log('Something went wrong');
+                        setLoading(false);
+                    });
+                axios
+                    .get<averageSalary[]>(`${API_URL}/salary/average-by-department`)
+                    .then(res => {
+                        setAverageSalary(res.data);
+                        setLoading(false);
+                    })
+                    .catch(err => {
+                        console.log('Something went wrong');
+                        setLoading(false);
+                    });
+                
             } catch (error) {
                 console.error(error);
                 setError
@@ -389,27 +408,37 @@ export function TopSalariesByDepartmentId({id}: Props){
     if(loading) return <p>Loading...</p>
     if(error) return <p>{error}</p>
 
+    const departmentAvgSalary = averageSalary.filter((avg) => avg.deptName == topSalaries.find((s) => s.department_id == id)?.dept_name);
 
     return(
         <Container fluid>
             <br />
             <Row>
-                <Col md={{ span: 6, order: 1 }}>
+                <Col md={{ span: 8, order: 1 }}>
                     <h2 className="text-xl font-semibold mb-4">Top Salaries</h2>
-                    {topSalaries.find((s) => s.department_id == id)?.dept_name}
                     
+                    {departmentAvgSalary.filter((avg) => avg.deptName == topSalaries.find((s) => s.department_id == id)?.dept_name).map(a => 
+                        <div key={a.departmentId}>
+                            <p>Employees from {topSalaries.find((s) => s.department_id == id)?.dept_name} department that makes over the average salary of {formatCurrency(a.averageSalary)}</p>
+                        </div>
+                    )}
+
+                    
+                </Col>
+                <Col md={{ span: 10, order: 1 }}>
+                    <ResponsiveContainer width="125%" height={300}>
+                        <BarChart data={topSalaries.filter(ts => ts.amount >= departmentAvgSalary.find((d) => d.departmentId = id)?.averageSalary)}>
+                            <CartesianGrid strokeDasharray="5 5" />
+                            <XAxis  dataKey="employee_id" angle={-45} textAnchor="end"  height={115} />
+                            <YAxis />
+                            <Tooltip content={CurrencyTooltip}/>
+                            <Bar dataKey="amount" fill="#31e60dff" animationDuration={1500} />
+                        </BarChart>
+                    </ResponsiveContainer>
                 </Col>
             </Row>
             <br />
-            <ResponsiveContainer width="150%" height={300}>
-            <BarChart data={topSalaries}>
-                <CartesianGrid strokeDasharray="5 5" />
-                <XAxis  dataKey="employee_id" angle={-90} textAnchor="end" interval={1} height={115} />
-                <YAxis />
-                <Tooltip content={CurrencyTooltip}/>
-                <Bar dataKey="amount" fill="#31e60dff" animationDuration={1500} />
-            </BarChart>
-            </ResponsiveContainer>
+
         </Container>
         
     )
