@@ -1,11 +1,10 @@
-//import axios from "axios";
+import axios from "axios";
+import { API_URL } from "../api/config";
 
-/*export default axios.create({
-  baseURL: "http://localhost:8080",
+export default axios.create({
+  baseURL: `${API_URL}`,
   headers: {
-  "Content-type": "application/json",
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "Origin, X-Requested-With, Content-Type, Accept",
+    "Content-type": "application/json",
   },
-});*/
+  // Elimina todos los headers Access-Control-Allow-*
+});
