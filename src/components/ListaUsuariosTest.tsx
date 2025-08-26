@@ -1,5 +1,5 @@
 // src/components/ListaUsuarios.tsx
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 type Usuario = {
@@ -20,8 +20,8 @@ const ListaUsuarios: React.FC = () => {
         setUsuarios(res.data);
         setCargando(false);
       })
-      .catch(err => {
-        setError('Error al cargar usuarios');
+      .catch(error => {
+        setError(error);
         setCargando(false);
       });
   }, []);

@@ -61,8 +61,8 @@ const DepartmentEmployees = ({id}:Props) => {
                         setDepartments(res.data);
                         setLoading(false);
                     })
-                    .catch(err => {
-                        console.log('Something went wrong');
+                    .catch(error => {
+                        console.log(error);
                         setLoading(false);
                     });
                 axios
@@ -71,8 +71,8 @@ const DepartmentEmployees = ({id}:Props) => {
                         setManager(res.data.content);
                         setLoading(false);
                     })
-                    .catch(err => {
-                        console.log('Something went wrong');
+                    .catch(error => {
+                        console.log(error);
                         setLoading(false);
                     })
                 const res = await axios.get<ApiResponse>(`${API_URL}/departments/${id}/employees`,{

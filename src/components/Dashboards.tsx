@@ -23,6 +23,7 @@ import { createCustomTooltip, formatCurrency, formatNumber } from "./Utils";
 
 
 
+
 const COLORS = ["#2795d4ff", "#27e4abff"];
 
 const CurrencyTooltip = createCustomTooltip(formatCurrency);
@@ -136,7 +137,7 @@ export default function GenderDistribution({id}:Props) {
               animationDuration={1200}
             >
               {genderData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell key={`cell-${index}`} fill={COLORS[entry.gender, index % COLORS.length]} />
               ))}
             </Pie>
             <Legend />
@@ -381,8 +382,8 @@ export function TopSalariesByDepartmentId({id}: Props){
                         setTopSalaries(res.data);
                         setLoading(false);
                     })
-                    .catch(err => {
-                        console.log('Something went wrong');
+                    .catch(error => {
+                        console.log(error);
                         setLoading(false);
                     });
                 axios
@@ -391,8 +392,8 @@ export function TopSalariesByDepartmentId({id}: Props){
                         setAverageSalary(res.data);
                         setLoading(false);
                     })
-                    .catch(err => {
-                        console.log('Something went wrong');
+                    .catch(error => {
+                        console.log(error);
                         setLoading(false);
                     });
                 
@@ -427,7 +428,7 @@ export function TopSalariesByDepartmentId({id}: Props){
                 </Col>
                 <Col md={{ span: 10, order: 1 }}>
                     <ResponsiveContainer width="125%" height={300}>
-                        <BarChart data={topSalaries.filter(ts => ts.amount >= departmentAvgSalary.find((d) => d.departmentId = id)?.averageSalary)}>
+                        <BarChart data={topSalaries.filter(ts => ts.amount >= departmentAvgSalary.find((d) => d.departmentId = id)?.averageSalary!)}>
                             <CartesianGrid strokeDasharray="5 5" />
                             <XAxis  dataKey="employee_id" angle={-45} textAnchor="end"  height={115} />
                             <YAxis />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Department } from '../models/DepartmentModel'
 import axios from 'axios'
 import { API_URL } from '../api/config';

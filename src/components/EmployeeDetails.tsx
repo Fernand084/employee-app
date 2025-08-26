@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Employee } from '../models/EmployeeModel'
 import axios from 'axios'
 import type { Title } from '../models/TitleModel';
@@ -16,10 +16,10 @@ const EmployeeDetails = ({id}:Props) => {
     const [employee, setEmployee] = useState<Employee>();
     const [titles, setTitles] = useState<Title[] | null>();
     const [salary, setSalary] = useState<Salary | null>();
-    const [salaries, setSalaries] = useState<Salary[] | null>();
+    //const [salaries, setSalaries] = useState<Salary[] | null>();
     const [hireDate,setHireDate] = useState<number[]>();
-    const [fromDate, setFromDate] = useState<number[]>();
-    const [toDate, setToDate] = useState<number[]>();
+    //const [fromDate, setFromDate] = useState<number[]>();
+    //const [toDate, setToDate] = useState<number[]>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
@@ -34,7 +34,8 @@ const EmployeeDetails = ({id}:Props) => {
             setLoading(false);
           })
           .catch(err => {
-            console.log('Something went wrong');
+            console.log(error);
+            setError(err)
             setLoading(false);
           });
 
@@ -42,38 +43,41 @@ const EmployeeDetails = ({id}:Props) => {
           .get<Salary>(`${API_URL}/employees/${id}/salary`)
           .then(res => {
             setSalary(res.data);
-            setFromDate(res.data.fromDate);
-            setToDate(res.data.toDate);
+            //setFromDate(res.data.fromDate);
+            //setToDate(res.data.toDate);
             setLoading(false);
           })
-          .catch(err => {
+          .catch(error => {
             console.log('Something went wrong');
+            setError(error)
             setLoading(false);
           });
 
-          axios
+         /* axios
           .get<Salary[]>(`${API_URL}/employees/${id}/salaries`)
           .then(res => {
-            setSalaries(res.data);
-            setFromDate(salary?.fromDate);
-            setToDate(salary?.toDate);
+            //setSalaries(res.data);
+            //setFromDate(salary?.fromDate);
+            //setToDate(salary?.toDate);
             setLoading(false);
           })
-          .catch(err => {
+          .catch(error => {
             console.log('Something went wrong');
+            setError(error)
             setLoading(false);
-          });
+          });*/
 
           axios
           .get<Title[]>(`${API_URL}/employees/${id}/titles`)
           .then(res => {
             setTitles(res.data);
-            setFromDate(salary?.fromDate);
-            setToDate(salary?.toDate);
+            //setFromDate(salary?.fromDate);
+            //setToDate(salary?.toDate);
             setLoading(false);
           })
-          .catch(err => {
+          .catch(error => {
             console.log('Something went wrong');
+            setError(error)
             setLoading(false);
           });
     }, [id]);
@@ -91,7 +95,7 @@ const EmployeeDetails = ({id}:Props) => {
           <Col>
             <p>Name: {employee.firstName}&nbsp;{employee.lastName}</p>
             <p>Hire date:&nbsp;{hireDate ? `${hireDate[2]}/${hireDate[1]}/${hireDate[0]}` : '--'}</p>
-            <p>Salary: {formatCurrency(salary?.amount)}</p>
+            <p>Salary: {formatCurrency(salary?.amount!)}</p>
             
           </Col>
         </Row>
