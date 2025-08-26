@@ -1,5 +1,6 @@
-# SPA redirects - DEBE ir PRIMERO
+# SPA redirects - DEBE ir primero
 /*    /index.html   200
 
-# API proxy - DESPUÉS
-/api/*  http://employee-api-v2.eba-ggx22ufz.us-east-1.elasticbeanstalk.com/api/:splat  200
+# API proxy hacia Elastic Beanstalk (usa HTTPS siempre)
+# Devuelve 200 para que Netlify lo trate como passthrough
+/api/*  https://employee-api-v2.eba-ggx22ufz.us-east-1.elasticbeanstalk.com/api/:splat  200
