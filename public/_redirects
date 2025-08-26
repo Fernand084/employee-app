@@ -1,1 +1,5 @@
+# SPA redirects - DEBE ir PRIMERO
+/*    /index.html   200
+
+# API proxy - DESPUÉS
 /api/*  http://employee-api-v2.eba-ggx22ufz.us-east-1.elasticbeanstalk.com/api/:splat  200
