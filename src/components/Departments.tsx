@@ -40,7 +40,7 @@ const Departments = () => {
                         <a className="page-link" href={`/departments/${department.id}/employees`}>
                             <ListGroup.Item className="page-item" key={department.id}>{department.deptName}</ListGroup.Item>
                         </a>
-                    ))}
+                    ))|| []}
                 </ListGroup>
             </Col>
         </Row>
