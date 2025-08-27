@@ -94,7 +94,7 @@ export default function GenderDistribution({id}:Props) {
         const fetchGenderData = async () => {
             try {
                 const res = await axios.get<genderDataset[]>(`${API_URL}/stats/gender-distribution`);
-                setDataSet(res.data)
+                setDataSet(Array.isArray(res.data) ? res.data : [])
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -160,7 +160,7 @@ export function ActiveEmployeesByDepartment(){
         const fetchData = async () => {
             try {
                 const res = await axios.get<Department[]>(`${API_URL}/stats/employees-per-department`);
-                setDepartments(res.data);
+                setDepartments(Array.isArray(res.data) ? res.data : []);
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -184,9 +184,9 @@ export function ActiveEmployeesByDepartment(){
             </Row>
             <ResponsiveContainer width="100%" height={300}>
             <BarChart data={departments.map(m => ({
-                            depto_id: m.id,
-                            departamento: m.deptName,
-                            empleados: m.employeeCount,
+                                depto_id: m.id,
+                                departamento: m.deptName,
+                                empleados: m.employeeCount,
                             }))}>
                 <CartesianGrid strokeDasharray="5 5" />
                 <XAxis  dataKey="departamento" angle={-45} textAnchor="end" interval={0} height={115} />
@@ -208,7 +208,7 @@ export function AverageSalaryByDepartment(){
         const fetchData = async () => {
             try {
                 const res = await axios.get<averageSalary[]>(`${API_URL}/salary/average-by-department`);
-                setAverageSalary(res.data);
+                setAverageSalary(Array.isArray(res.data) ? res.data : []);
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -253,7 +253,7 @@ export function TitlesHistoryByDepartment(){
         const fetchData = async () => {
             try {
                 const res = await axios.get<titleHistory[]>(`${API_URL}/stats/titles-history`);
-                setTitleHistory(res.data);
+                setTitleHistory(Array.isArray(res.data) ? res.data : []);
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -319,7 +319,7 @@ export function EmployeeSalaryHistory({id}: SalaryProps){
         const fetchData = async () => {
             try {
                 const res = await axios.get<Salary[]>(`${API_URL}/employees/${id}/salaries`);
-                setSalary(res.data);
+                setSalary(Array.isArray(res.data) ? res.data : []);
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -379,7 +379,7 @@ export function TopSalariesByDepartmentId({id}: Props){
                 axios
                     .get<topSalaries[]>(`${API_URL}/salary/${id}/highest`)
                     .then(res => {
-                        setTopSalaries(res.data);
+                        setTopSalaries(Array.isArray(res.data) ? res.data : []);
                         setLoading(false);
                     })
                     .catch(error => {
@@ -389,7 +389,7 @@ export function TopSalariesByDepartmentId({id}: Props){
                 axios
                     .get<averageSalary[]>(`${API_URL}/salary/average-by-department`)
                     .then(res => {
-                        setAverageSalary(res.data);
+                        setAverageSalary(Array.isArray(res.data) ? res.data : []);
                         setLoading(false);
                     })
                     .catch(error => {

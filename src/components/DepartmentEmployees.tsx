@@ -58,7 +58,7 @@ const DepartmentEmployees = ({id}:Props) => {
                 axios
                     .get<Department[]>(`${API_URL}/departments`)
                     .then(res => {
-                        setDepartments(res.data);
+                        setDepartments(Array.isArray(res.data) ? res.data : []);
                         setLoading(false);
                     })
                     .catch(error => {
@@ -68,7 +68,7 @@ const DepartmentEmployees = ({id}:Props) => {
                 axios
                     .get<ApiResponse>(`${API_URL}/departments/${id}/manager`)
                     .then(res => {
-                        setManager(res.data.content);
+                        setManager(Array.isArray(res.data.content) ? res.data.content : []);
                         setLoading(false);
                     })
                     .catch(error => {
@@ -78,7 +78,7 @@ const DepartmentEmployees = ({id}:Props) => {
                 const res = await axios.get<ApiResponse>(`${API_URL}/departments/${id}/employees`,{
                     params: { page, size },
                 });
-                setEmployees(res.data.content);
+                setEmployees(Array.isArray(res.data.content) ? res.data.content : []);
                 setLoading(false);
                 setPageable(res.data.pageable);
                 setTotalElements(res.data.totalElements);
@@ -121,9 +121,9 @@ const DepartmentEmployees = ({id}:Props) => {
             <Row className="justify-content-md-center">
                 <Col lg={6}>
                     <ListGroup className="pagination">
-                        {employees.map(Employee => (
+                        {employees.map((Employee, index) => (
                         <ListGroup.Item className="page-item" key={Employee.id}>
-                            <a className="page-link" href ={`/employees/${Employee.id}`}>
+                            <a key={index} className="page-link" href ={`/employees/${Employee.id}`}>
                                 {Employee.firstName}&nbsp;{Employee.lastName}&nbsp;
                                 
                             </a>

@@ -51,7 +51,7 @@ const Employees = () => {
                 const res = await axios.get<ApiResponse>(`${API_URL}/employees`,{
                     params: { page, size },
                 });
-                setEmployees(res.data.content);
+                setEmployees(Array.isArray(res.data.content) ? res.data.content : []);
                 setLoading(false);
                 setPageable(res.data.pageable);
                 setTotalElements(res.data.totalElements);
@@ -90,11 +90,10 @@ const Employees = () => {
                     <Row className="justify-content-md-center">
                         <Col lg={6}>
                             <ListGroup className="pagination">
-                                {employees.map(Employee => (
+                                {employees.map((Employee,index) => (
                                 <ListGroup.Item className="page-item" key={Employee.id}>
-                                    <a className="page-link" href ={`/employees/${Employee.id}`}>
+                                    <a key={index} className="page-link" href ={`/employees/${Employee.id}`}>
                                         {Employee.firstName}&nbsp;{Employee.lastName}&nbsp;
-                                        
                                     </a>
                                     <p>Hire date:&nbsp;{Employee.hireDate ? `${Employee.hireDate[2]}/${Employee.hireDate[1]}/${Employee.hireDate[0]}` : '--'}</p>
                                 </ListGroup.Item>
