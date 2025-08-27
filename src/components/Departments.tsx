@@ -14,7 +14,7 @@ const Departments = () => {
         const fetchDepartments = async () => {
             try {
                 const res = await axios.get<Department[]>(`${API_URL}/departments`);
-                setDepartments(res.data);
+                setDepartments(Array.isArray(res.data) ? res.data : []);
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -36,11 +36,13 @@ const Departments = () => {
                 <h1>Departments</h1> 
                 <br />
                 <ListGroup>
-                    {departments.map(department => (
-                        <a className="page-link" href={`/departments/${department.id}/employees`}>
-                            <ListGroup.Item className="page-item" key={department.id}>{department.deptName}</ListGroup.Item>
-                        </a>
-                    ))|| []}
+                    {departments.map((dept, index) => {
+                        return (
+                            <a key={index} className="page-link" href={`/departments/${dept.id}/employees`}>
+                                <ListGroup.Item className="page-item" key={dept.id}>{dept.deptName}</ListGroup.Item>
+                            </a>
+                        )
+                    })}
                 </ListGroup>
             </Col>
         </Row>
