@@ -1,5 +1,5 @@
-# SPA redirects - primero
-/*    /index.html   200
+# Proxy de API (debe ir primero)
+ /api/*  http://employee-api-v2.eba-ggx22ufz.us-east-1.elasticbeanstalk.com/api/:splat  200
 
-# API proxy - después
-/api/*  http://employee-api-v2.eba-ggx22ufz.us-east-1.elasticbeanstalk.com/api/:splat  200
+# SPA redirects - después
+/*    /index.html   200
