@@ -22,10 +22,6 @@ import type { Salary } from "../models/SalaryModel";
 import { createCustomTooltip, formatCurrency, formatNumber } from "./Utils";
 
 
-
-
-const COLORS = ["#2795d4ff", "#27e4abff"];
-
 const CurrencyTooltip = createCustomTooltip(formatCurrency);
 const NumberTooltip = createCustomTooltip(formatNumber);
 
