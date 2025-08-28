@@ -18,8 +18,8 @@ const EmployeeDetails = ({id}:Props) => {
     const [salary, setSalary] = useState<Salary | null>();
     //const [salaries, setSalaries] = useState<Salary[] | null>();
     const [hireDate,setHireDate] = useState<number[]>();
-    //const [fromDate, setFromDate] = useState<number[]>();
-    //const [toDate, setToDate] = useState<number[]>();
+    const [_fromDate, setFromDate] = useState<number[]>();
+    const [_toDate, setToDate] = useState<number[]>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
@@ -71,8 +71,10 @@ const EmployeeDetails = ({id}:Props) => {
           .get<Title[]>(`${API_URL}/employees/${id}/titles`)
           .then(res => {
             setTitles(res.data);
-            //setFromDate(salary?.fromDate);
-            //setToDate(salary?.toDate);
+            titles?.map(t => {
+                setFromDate(t.fromDate),
+                setToDate(t.toDate)
+            })
             setLoading(false);
           })
           .catch(error => {
@@ -234,8 +236,8 @@ const EmployeeDetails = ({id}:Props) => {
                                                             <div className="mt-2">
                                                                 <span className="badge bg-info bg-opacity-15 text-info rounded-pill">
                                                                     <i className="bi bi-clock me-1"></i>
-                                                                    {Math.floor((new Date(title.toDate[0], title.toDate[1]-1, title.toDate[2]) - 
-                                                                                new Date(title.fromDate[0], title.fromDate[1]-1, title.fromDate[2])) / 
+                                                                    {Math.floor((title.toDate[0], title.toDate[1]-1, title.toDate[2]) - 
+                                                                                (title.fromDate[0], title.fromDate[1]-1, title.fromDate[2]) / 
                                                                                 (1000 * 60 * 60 * 24 * 365))} years
                                                                 </span>
                                                             </div>

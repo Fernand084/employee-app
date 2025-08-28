@@ -68,7 +68,7 @@ const Departments = () => {
                     {/* Departamentos */}
                     <div className="card shadow-lg border-0 rounded-4 overflow-hidden">
                         <div className="list-group list-group-flush">
-                            {departments.map((dept, index) => (
+                            {departments.map((dept, _index) => (
                                 <a 
                                     key={dept.id}
                                     href={`/departments/${dept.id}/employees`}

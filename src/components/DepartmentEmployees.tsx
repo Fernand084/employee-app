@@ -6,7 +6,7 @@ import type { Pageable } from '../models/PageableModel';
 import type { Department } from '../models/DepartmentModel'
 import axios from 'axios';
 import { API_URL } from "../api/config";
-import { Col, Container, ListGroup, Pagination, Row } from 'react-bootstrap';
+import { Col, Container, Pagination, Row } from 'react-bootstrap';
 
 
 interface Props {
@@ -189,7 +189,7 @@ const DepartmentEmployees = ({id}:Props) => {
                     {/* Employee Cards */}
                     <div className="card shadow-lg border-0 rounded-4 overflow-hidden">
                         <div className="list-group list-group-flush">
-                            {employees.map((Employee, index) => (
+                            {employees.map((Employee, _index) => (
                                 <div key={Employee.id} className="list-group-item border-0 py-4">
                                     <Row className="align-items-center">
                                         <Col xs="auto">

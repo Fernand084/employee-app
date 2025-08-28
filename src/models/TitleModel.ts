@@ -1,5 +1,7 @@
+type DateTuple = [number, number, number];
+
 export interface Title{
         title: string;
-        fromDate: number[];
-        toDate: number[];
+        fromDate: DateTuple;
+        toDate: DateTuple;
 }
