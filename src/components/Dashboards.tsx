@@ -361,7 +361,6 @@ export function EmployeeSalaryHistory({id}: SalaryProps){
                 </ResponsiveContainer>
                 </Col>
             </Row>
-            
         </Container>
         
     )
@@ -412,34 +411,141 @@ export function TopSalariesByDepartmentId({id}: Props){
     const departmentAvgSalary = averageSalary.filter((avg) => avg.deptName == topSalaries.find((s) => s.department_id == id)?.dept_name);
 
     return(
-        <Container fluid>
-            <br />
-            <Row>
-                <Col md={{ span: 8, order: 1 }}>
-                    <h2 className="text-xl font-semibold mb-4">Top Salaries</h2>
-                    
-                    {departmentAvgSalary.filter((avg) => avg.deptName == topSalaries.find((s) => s.department_id == id)?.dept_name).map(a => 
-                        <div key={a.departmentId}>
-                            <p>Employees from {topSalaries.find((s) => s.department_id == id)?.dept_name} department that makes over the average salary of {formatCurrency(a.averageSalary)}</p>
+        <Container fluid className="py-5 bg-light min-vh-100">
+            <Row className="justify-content-center">
+                <Col xl={10}>
+                    {/* Card principal */}
+                    <div className="card shadow-lg border-0 rounded-4 overflow-hidden">
+                        {/* Header del card */}
+                        <div className="card-header bg-gradient bg-primary text-white border-0 py-4">
+                            <div className="d-flex align-items-center">
+                                <div className="bg-white bg-opacity-25 rounded-circle p-3 me-3">
+                                    <i className="bi bi-currency-dollar fs-2 text-white"></i>
+                                </div>
+                                <div>
+                                    <h1 className="h3 mb-0 fw-bold">Top Salaries Analysis</h1>
+                                    <p className="mb-0 opacity-75">High-performing employees above department average</p>
+                                </div>
+                            </div>
                         </div>
-                    )}
 
-                    
-                </Col>
-                <Col md={{ span: 10, order: 1 }}>
-                    <ResponsiveContainer width="125%" height={300}>
-                        <BarChart data={topSalaries.filter(ts => ts.amount >= departmentAvgSalary.find((d) => d.departmentId = id)?.averageSalary!)}>
-                            <CartesianGrid strokeDasharray="5 5" />
-                            <XAxis  dataKey="employee_id" angle={-45} textAnchor="end"  height={115} />
-                            <YAxis />
-                            <Tooltip content={CurrencyTooltip}/>
-                            <Bar dataKey="amount" fill="#31e60dff" animationDuration={1500} />
-                        </BarChart>
-                    </ResponsiveContainer>
+                        {/* Body del card */}
+                        <div className="card-body p-4 p-lg-5">
+                            {/* Información del departamento */}
+                            <Row className="mb-4">
+                                <Col>
+                                    {departmentAvgSalary.filter((avg) => avg.deptName == topSalaries.find((s) => s.department_id == id)?.dept_name).map(a => 
+                                        <div key={a.departmentId}>
+                                            <div className="alert alert-info border-0 rounded-3 bg-info bg-opacity-10" role="alert">
+                                                <div className="d-flex align-items-start">
+                                                    <i className="bi bi-info-circle-fill text-info fs-4 me-3 mt-1"></i>
+                                                    <div>
+                                                        <h6 className="fw-bold text-info mb-2">Department Insight</h6>
+                                                        <p className="mb-0">
+                                                            Employees from <span className="badge bg-primary rounded-pill px-3 py-2 fs-6">{topSalaries.find((s) => s.department_id == id)?.dept_name}</span> department that earn above the department average of <span className="text-success fw-bold fs-5">{formatCurrency(a.averageSalary)}</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </Col>
+                            </Row>
+
+                            {/* stats */}
+                            <Row className="g-4 mb-5">
+                                <Col md={4}>
+                                    <div className="text-center p-4 bg-success bg-opacity-10 rounded-3">
+                                        <i className="bi bi-people-fill text-success fs-1 mb-3"></i>
+                                        <h4 className="fw-bold text-success mb-1">{topSalaries.filter(ts => ts.amount >= departmentAvgSalary.find((d) => d.departmentId = id)?.averageSalary!).length}</h4>
+                                        <p className="text-muted mb-0">Top Performers</p>
+                                    </div>
+                                </Col>
+                                <Col md={4}>
+                                    <div className="text-center p-4 bg-warning bg-opacity-10 rounded-3">
+                                        <i className="bi bi-graph-up text-warning fs-1 mb-3"></i>
+                                        <h4 className="fw-bold text-warning mb-1">
+                                            {formatCurrency(Math.max(...topSalaries.map(ts => ts.amount)))}
+                                        </h4>
+                                        <p className="text-muted mb-0">Highest Salary</p>
+                                    </div>
+                                </Col>
+                                <Col md={4}>
+                                    <div className="text-center p-4 bg-info bg-opacity-10 rounded-3">
+                                        <i className="bi bi-calculator text-info fs-1 mb-3"></i>
+                                        <h4 className="fw-bold text-info mb-1">
+                                            {formatCurrency(topSalaries.reduce((acc, ts) => acc + ts.amount, 0) / topSalaries.length)}
+                                        </h4>
+                                        <p className="text-muted mb-0">Average</p>
+                                    </div>
+                                </Col>
+                            </Row>
+                            
+                            {/* charts */}
+                            <div className="bg-white rounded-3 border p-4 shadow-sm">
+                                <div className="d-flex align-items-center justify-content-between mb-4">
+                                    <h5 className="fw-bold mb-0 text-primary">
+                                        <i className="bi bi-bar-chart-fill me-2"></i>
+                                        Salary Distribution
+                                    </h5>
+                                    <span className="badge bg-light text-dark rounded-pill px-3 py-2">
+                                        <i className="bi bi-graph-up-arrow me-1"></i>
+                                        Above Average
+                                    </span>
+                                </div>
+                                <ResponsiveContainer width="100%" height={400}>
+                                    <BarChart 
+                                        data={topSalaries.filter(ts => ts.amount >= departmentAvgSalary.find((d) => d.departmentId = id)?.averageSalary!)}
+                                        margin={{ top: 20, right: 30, left: 20, bottom: 80 }}
+                                    >
+                                        <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" strokeOpacity={0.8} />
+                                        <XAxis 
+                                            dataKey="employee_id" 
+                                            angle={-45} 
+                                            textAnchor="end" 
+                                            height={100}
+                                            stroke="#6c757d"
+                                            fontSize={12}
+                                        />
+                                        <YAxis stroke="#6c757d" fontSize={12} />
+                                        <Tooltip content={CurrencyTooltip} />
+                                        <Bar 
+                                            dataKey="amount" 
+                                            fill="url(#colorGradient)" 
+                                            animationDuration={1500}
+                                            radius={[8, 8, 0, 0]}
+                                        />
+                                        <defs>
+                                            <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%" stopColor="#0d6efd" stopOpacity={0.8}/>
+                                                <stop offset="100%" stopColor="#0d6efd" stopOpacity={0.3}/>
+                                            </linearGradient>
+                                        </defs>
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+
+                        {/* Footer del card */}
+                        <div className="card-footer bg-light border-0 py-3">
+                            <div className="d-flex align-items-center justify-content-between">
+                                <small className="text-muted">
+                                    <i className="bi bi-clock me-1"></i>
+                                    Last updated: {new Date().toLocaleDateString()}
+                                </small>
+                                <div className="btn-group" role="group">
+                                    <button type="button" className="btn btn-outline-primary btn-sm">
+                                        <i className="bi bi-download me-1"></i>Export
+                                    </button>
+                                    <button type="button" className="btn btn-outline-secondary btn-sm">
+                                        <i className="bi bi-share me-1"></i>Share
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </Col>
             </Row>
-            <br />
-
         </Container>
         
     )

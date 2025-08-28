@@ -1,256 +1,509 @@
 // src/pages/Home.tsx
 import Message from '../components/Message';
 import { homeContent } from '../content/HomeContent';
-import { Link } from 'react-router-dom';
-import { Container, ListGroup, Table } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <br />
-      <Container className='auto'>
-        <h1>{homeContent.title}</h1>
-        <Message msg={homeContent.text} />
+    <Container fluid className="py-5 bg-light min-vh-100">
+      <Container>
+        <Row className="justify-content-center">
+          <Col xl={11} xxl={10}>
+            
+            {/* Hero Header */}
+            <div className="card shadow-lg border-0 rounded-4 mb-5 overflow-hidden">
+              <div className="bg-gradient position-relative" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
+                <div className="text-white p-5">
+                  <div className="d-flex align-items-center">
+                    <div className="bg-white bg-opacity-25 rounded-circle p-4 me-4">
+                      <i className="bi bi-code-slash fs-1 text-white"></i>
+                    </div>
+                    <div>
+                      <h1 className="display-6 fw-bold mb-2">{homeContent.title}</h1>
+                      <div className="bg-white bg-opacity-10 rounded-3 p-3 mt-3">
+                        <Message msg={homeContent.text} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <p>For this project I've used the following technologies:</p>
-        <ListGroup >
-          <ListGroup.Item>Spring Boot 3.2 with basic dependencies, jpa, psql driver and lombok</ListGroup.Item>
-          <ListGroup.Item>Maven</ListGroup.Item>
-          <ListGroup.Item>Java 21</ListGroup.Item>
-          <ListGroup.Item>Postgres 16</ListGroup.Item>
-          <ListGroup.Item>Docker</ListGroup.Item>
-          <ListGroup.Item>React + vite</ListGroup.Item>
-          <ListGroup.Item>AWS</ListGroup.Item>
-        </ListGroup>
-      </Container>
-      <br />
-      <Container className='auto'>
-        <h3>Dev environment</h3>
-        <p>
-          I’m working on a Windows computer, but I find Windows a bit tedious because of all the configurations you’ve to setup and some potential compatibility problems, 
-          so I’ve opted for WSL Linux (Ubuntu) as my development environment which by the way is closer to production.
-        </p>
-      </Container>
+            <Row className="g-4 mb-5">
+              
+              {/* Tech Stack Section */}
+              <Col lg={6}>
+                <div className="card shadow-lg border-0 rounded-4 h-100">
+                  <div className="card-header bg-white border-0 py-4">
+                    <div className="d-flex align-items-center">
+                      <div className="bg-primary bg-opacity-10 rounded-circle p-2 me-3">
+                        <i className="bi bi-stack text-primary fs-5"></i>
+                      </div>
+                      <h4 className="fw-bold text-primary mb-0">Tech Stack</h4>
+                    </div>
+                  </div>
+                  <div className="card-body">
+                    <p className="text-muted mb-4">Modern technologies powering this application:</p>
+                    <div className="row g-3">
+                      <div className="col-md-6">
+                        <div className="d-flex align-items-center p-3 bg-light rounded-3">
+                          <i className="bi bi-cup-hot text-warning fs-4 me-3"></i>
+                          <div>
+                            <div className="fw-bold">Spring Boot 3.2</div>
+                            <small className="text-muted">JPA, PostgreSQL, Lombok</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="d-flex align-items-center p-3 bg-light rounded-3">
+                          <i className="bi bi-box text-info fs-4 me-3"></i>
+                          <div>
+                            <div className="fw-bold">Maven</div>
+                            <small className="text-muted">Build & Dependencies</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="d-flex align-items-center p-3 bg-light rounded-3">
+                          <i className="bi bi-code-square text-danger fs-4 me-3"></i>
+                          <div>
+                            <div className="fw-bold">Java 21</div>
+                            <small className="text-muted">Latest LTS</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="d-flex align-items-center p-3 bg-light rounded-3">
+                          <i className="bi bi-database text-success fs-4 me-3"></i>
+                          <div>
+                            <div className="fw-bold">PostgreSQL 16</div>
+                            <small className="text-muted">Database</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="d-flex align-items-center p-3 bg-light rounded-3">
+                          <i className="bi bi-container text-primary fs-4 me-3"></i>
+                          <div>
+                            <div className="fw-bold">Docker</div>
+                            <small className="text-muted">Containerization</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="d-flex align-items-center p-3 bg-light rounded-3">
+                          <i className="bi bi-lightning text-warning fs-4 me-3"></i>
+                          <div>
+                            <div className="fw-bold">React + Vite</div>
+                            <small className="text-muted">Frontend</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="d-flex align-items-center p-3 bg-warning bg-opacity-10 rounded-3 border border-warning border-opacity-25">
+                          <i className="bi bi-cloud text-warning fs-4 me-3"></i>
+                          <div>
+                            <div className="fw-bold text-warning">AWS Deployment</div>
+                            <small className="text-muted">Cloud hosting and infrastructure</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Col>
 
-      <Container className='auto'>
-        <h3>Docker</h3>
-        <p>
-          I use Docker because is greatly convenient since I do not have to install software locally, like postgresql, so this app runs locally on a couple of containers, 
-          one for the database and one for the java application. Both containers are created through the use of docker-compose and each time I’m working on this project I’d just have to type a single command for it to run. Simply beautiful!
-        </p>
-      </Container>
+              {/* Environment & Tools Section */}
+              <Col lg={6}>
+                <div className="d-flex flex-column gap-4 h-100">
+                  
+                  {/* Dev Environment Section*/}
+                  <div className="card shadow-lg border-0 rounded-4 flex-grow-1">
+                    <div className="card-header bg-white border-0 py-4">
+                      <div className="d-flex align-items-center">
+                        <div className="bg-info bg-opacity-10 rounded-circle p-2 me-3">
+                          <i className="bi bi-terminal text-info fs-5"></i>
+                        </div>
+                        <h5 className="fw-bold text-info mb-0">Development Environment</h5>
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <div className="d-flex align-items-start">
+                        <i className="bi bi-ubuntu text-danger fs-3 me-3 mt-1"></i>
+                        <div>
+                          <p className="mb-2">
+                            Working on Windows with <strong>WSL Linux (Ubuntu)</strong> as the development environment, 
+                            which provides better compatibility and is closer to production.
+                          </p>
+                          <div className="bg-light rounded-3 p-3">
+                            <small className="text-muted">
+                              <i className="bi bi-check-circle text-success me-1"></i>
+                              Avoids Windows configuration issues
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-      <Container className='auto'>
-        <h3>Database</h3>
-        <p>
-          I started by looking for a testing database I could use with some data already on it so I could try and create some queries that will require more than a few “select” statements on sql. 
-          I found this amazing “employees” database with enough records that was perfect for what I’m trying to do:
-        </p>
-        <Link to="https://github.com/neondatabase-labs/postgres-sample-dbs#employees-database">neondatabase-labs/employee-database</Link>
+                  {/* Docker */}
+                  <div className="card shadow-lg border-0 rounded-4 flex-grow-1">
+                    <div className="card-header bg-white border-0 py-4">
+                      <div className="d-flex align-items-center">
+                        <div className="bg-primary bg-opacity-10 rounded-circle p-2 me-3">
+                          <i className="bi bi-container text-primary fs-5"></i>
+                        </div>
+                        <h5 className="fw-bold text-primary mb-0">Docker Containerization</h5>
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <p className="mb-3">
+                        Using Docker for convenient local development without installing software locally.
+                      </p>
+                      <div className="bg-primary bg-opacity-5 rounded-3 p-3">
+                        <div className="d-flex align-items-center mb-2">
+                          <i className="bi bi-play-circle text-success fs-5 me-2"></i>
+                          <strong>Single Command Setup</strong>
+                        </div>
+                        <small className="text-muted">
+                          Docker Compose orchestrates database and application containers seamlessly.
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </Col>
+            </Row>
+
+            {/* Database Section */}
+            <div className="card shadow-lg border-0 rounded-4 mb-5">
+              <div className="card-header bg-white border-0 py-4">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center">
+                    <div className="bg-success bg-opacity-10 rounded-circle p-2 me-3">
+                      <i className="bi bi-database text-success fs-5"></i>
+                    </div>
+                    <div>
+                      <h4 className="fw-bold text-success mb-0">Database Schema</h4>
+                      <small className="text-muted">Employee database with comprehensive test data</small>
+                    </div>
+                  </div>
+                  <a href="https://github.com/neondatabase-labs/postgres-sample-dbs#employees-database" 
+                    className="btn btn-outline-success btn-sm rounded-pill" 
+                    target="_blank" rel="noopener noreferrer">
+                    <i className="bi bi-github me-1"></i>Source
+                  </a>
+                </div>
+              </div>
+              <div className="card-body">
+                <div className="alert alert-info border-0 rounded-3 mb-4">
+                  <i className="bi bi-info-circle me-2"></i>
+                  Using the <strong>neondatabase-labs employee database</strong> - perfect for complex SQL queries and testing.
+                </div>
+                <div className="table-responsive">
+                  <Table className="table-hover align-middle">
+                    <thead className="table-dark">
+                      <tr>
+                        <th><i className="bi bi-table me-2"></i>Table Name</th>
+                        <th><i className="bi bi-list-columns me-2"></i>Column Name</th>
+                        <th><i className="bi bi-code me-2"></i>Data Type</th>
+                        <th><i className="bi bi-question-circle me-2"></i>Nullable</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="table-primary">
+                        <td><span className="badge bg-primary">department</span></td>
+                        <td>id</td>
+                        <td><code>character</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-primary">
+                        <td><span className="badge bg-primary">department</span></td>
+                        <td>dept_name</td>
+                        <td><code>character varying</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-info">
+                        <td><span className="badge bg-info">department_employee</span></td>
+                        <td>employee_id</td>
+                        <td><code>bigint</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-info">
+                        <td><span className="badge bg-info">department_employee</span></td>
+                        <td>department_id</td>
+                        <td><code>character</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-info">
+                        <td><span className="badge bg-info">department_employee</span></td>
+                        <td>from_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-info">
+                        <td><span className="badge bg-info">department_employee</span></td>
+                        <td>to_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-warning">
+                        <td><span className="badge bg-warning">department_manager</span></td>
+                        <td>employee_id</td>
+                        <td><code>bigint</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-warning">
+                        <td><span className="badge bg-warning">department_manager</span></td>
+                        <td>department_id</td>
+                        <td><code>character</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-warning">
+                        <td><span className="badge bg-warning">department_manager</span></td>
+                        <td>from_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-warning">
+                        <td><span className="badge bg-warning">department_manager</span></td>
+                        <td>to_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-success">
+                        <td><span className="badge bg-success">employee</span></td>
+                        <td>id</td>
+                        <td><code>bigint</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-success">
+                        <td><span className="badge bg-success">employee</span></td>
+                        <td>birth_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-success">
+                        <td><span className="badge bg-success">employee</span></td>
+                        <td>first_name</td>
+                        <td><code>character varying</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-success">
+                        <td><span className="badge bg-success">employee</span></td>
+                        <td>last_name</td>
+                        <td><code>character varying</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-success">
+                        <td><span className="badge bg-success">employee</span></td>
+                        <td>gender</td>
+                        <td><code>USER-DEFINED</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-success">
+                        <td><span className="badge bg-success">employee</span></td>
+                        <td>hire_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-danger">
+                        <td><span className="badge bg-danger">salary</span></td>
+                        <td>employee_id</td>
+                        <td><code>bigint</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-danger">
+                        <td><span className="badge bg-danger">salary</span></td>
+                        <td>amount</td>
+                        <td><code>bigint</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-danger">
+                        <td><span className="badge bg-danger">salary</span></td>
+                        <td>from_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-danger">
+                        <td><span className="badge bg-danger">salary</span></td>
+                        <td>to_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-secondary">
+                        <td><span className="badge bg-secondary">title</span></td>
+                        <td>employee_id</td>
+                        <td><code>bigint</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-secondary">
+                        <td><span className="badge bg-secondary">title</span></td>
+                        <td>title</td>
+                        <td><code>character varying</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-secondary">
+                        <td><span className="badge bg-secondary">title</span></td>
+                        <td>from_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                      <tr className="table-secondary">
+                        <td><span className="badge bg-secondary">title</span></td>
+                        <td>to_date</td>
+                        <td><code>date</code></td>
+                        <td><span className="badge bg-danger">NO</span></td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </div>
+              </div>
+            </div>
+
+            {/* API Endpoints Section */}
+            <div className="card shadow-lg border-0 rounded-4 mb-5">
+              <div className="card-header bg-white border-0 py-4">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center">
+                    <div className="bg-warning bg-opacity-10 rounded-circle p-2 me-3">
+                      <i className="bi bi-api text-warning fs-5"></i>
+                    </div>
+                    <div>
+                      <h4 className="fw-bold text-warning mb-0">API Endpoints</h4>
+                      <small className="text-muted">Read-only REST API for AWS free-tier deployment</small>
+                    </div>
+                  </div>
+                  <span className="badge bg-success rounded-pill px-3 py-2">
+                    <i className="bi bi-shield-check me-1"></i>GET Only
+                  </span>
+                </div>
+              </div>
+              <div className="card-body">
+                <div className="alert alert-warning border-0 rounded-3 mb-4">
+                  <i className="bi bi-info-circle me-2"></i>
+                  <strong>AWS Free-Tier Optimization:</strong> Only GET endpoints are available to minimize resource usage and costs.
+                </div>
+                
+                <Row className="g-4">
+                  
+                  {/* Employees Endpoints Section*/}
+                  <Col lg={6}>
+                    <div className="border rounded-3 p-4 h-100">
+                      <div className="d-flex align-items-center mb-3">
+                        <i className="bi bi-people-fill text-primary fs-4 me-3"></i>
+                        <h5 className="text-primary fw-bold mb-0">Employees</h5>
+                      </div>
+                      <div className="vstack gap-2">
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/employees</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/employees/id</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/employees/id/salary</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/employees/id/salaries</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/employees/id/titles</code>
+                        </div>
+                      </div>
+                    </div>
+                  </Col>
+
+                  {/* Departments Endpoints Section*/}
+                  <Col lg={6}>
+                    <div className="border rounded-3 p-4 h-100">
+                      <div className="d-flex align-items-center mb-3">
+                        <i className="bi bi-building text-info fs-4 me-3"></i>
+                        <h5 className="text-info fw-bold mb-0">Departments</h5>
+                      </div>
+                      <div className="vstack gap-2">
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/departments</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/departments/id/employees</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/departments/id/manager</code>
+                        </div>
+                      </div>
+                    </div>
+                  </Col>
+
+                  {/* Salaries Endpoints Section*/}
+                  <Col lg={6}>
+                    <div className="border rounded-3 p-4 h-100">
+                      <div className="d-flex align-items-center mb-3">
+                        <i className="bi bi-currency-dollar text-success fs-4 me-3"></i>
+                        <h5 className="text-success fw-bold mb-0">Salaries</h5>
+                      </div>
+                      <div className="vstack gap-2">
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/salary/id/highest</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/salary/average-by-department</code>
+                        </div>
+                      </div>
+                    </div>
+                  </Col>
+
+                  {/* Statistics Endpoints Section*/}
+                  <Col lg={6}>
+                    <div className="border rounded-3 p-4 h-100">
+                      <div className="d-flex align-items-center mb-3">
+                        <i className="bi bi-graph-up text-warning fs-4 me-3"></i>
+                        <h5 className="text-warning fw-bold mb-0">Statistics</h5>
+                      </div>
+                      <div className="vstack gap-2">
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/stats/employees-per-department</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/stats/gender-distribution</code>
+                        </div>
+                        <div className="d-flex align-items-center p-2 bg-light rounded-2">
+                          <span className="badge bg-success me-2">GET</span>
+                          <code className="small">/stats/titles-history</code>
+                        </div>
+                      </div>
+                    </div>
+                  </Col>
+
+                </Row>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="text-center">
+              <div className="d-inline-flex align-items-center bg-white rounded-pill px-4 py-2 shadow-sm">
+                <i className="bi bi-github text-dark fs-5 me-2"></i>
+                <span className="text-muted small">Built with passion for modern web development</span>
+              </div>
+            </div>
+            
+          </Col>
+        </Row>
       </Container>
-      <br />
-      <Container className='auto'>
-        <p>Here are the table names and fields it contains:</p>
-        <Table striped bordered hover variant="dark">
-          <thead>
-            <tr>
-              <th>table_name</th>
-              <th>column_name</th>
-              <th>data_type</th>
-              <th>is_nullable</th>
-            </tr>
-          </thead>
-          
-          <tbody>
-            <tr>
-              <td>department</td>
-              <td>id</td>
-              <td>character</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department</td>
-              <td>dept_name</td>
-              <td>character varying</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department_employee</td>
-              <td>employee_id</td>
-              <td>bigint</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department_employee</td>
-              <td>department_id</td>
-              <td>characther</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department_employee</td>
-              <td>from_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department_employee</td>
-              <td>to_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department_manager</td>
-              <td>employee_id</td>
-              <td>bigint</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department_manager</td>
-              <td>department_id</td>
-              <td>character</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department_manager</td>
-              <td>from_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>department_manager</td>
-              <td>to_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>employee</td>
-              <td>id</td>
-              <td>bigint</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>employee</td>
-              <td>birth_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>employee</td>
-              <td>first_name</td>
-              <td>character varying</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>employee</td>
-              <td>last_name</td>
-              <td>character varying</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>employee</td>
-              <td>gender</td>
-              <td>USER-DEFINED</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>employee</td>
-              <td>hire_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>salary</td>
-              <td>employee_id</td>
-              <td>bigint</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>salary</td>
-              <td>amount</td>
-              <td>bigint</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>salary</td>
-              <td>from_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>salary</td>
-              <td>to_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>title</td>
-              <td>employee_id</td>
-              <td>bigint</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>title</td>
-              <td>title</td>
-              <td>character varying</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>title</td>
-              <td>from_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-            <tr>
-              <td>title</td>
-              <td>to_date</td>
-              <td>date</td>
-              <td>NO</td>
-            </tr>
-          </tbody>
-        </Table>
-      </Container>
-      <Container className='auto'>
-        <h3>Endpoints</h3>
-        <p>
-          Since I’m going to host this on AWS using the free-tier plan for now, 
-          I decided to leave out the POST and DELETE requests for all this endpoints and I’ve make the api as read-only. 
-        </p>
-        <p>Here are the functions grouped by identity:</p>
-        <br />
-        <h5>Employees</h5>
-        <p>GET</p>
-        <ListGroup>
-          <ListGroup.Item>/employees – list all employees</ListGroup.Item>
-          <ListGroup.Item>/employeea/id – bring the details from a particular employee</ListGroup.Item>
-          <ListGroup.Item>/employees/id/salary – salary history for a particular employee</ListGroup.Item>
-          <ListGroup.Item>/employees/id/titles – title history for a particular employee</ListGroup.Item>
-        </ListGroup>
-        <br />
-        <h5>Departments</h5>
-        <p>GET</p>
-        <ListGroup>
-          <ListGroup.Item>/departments – list all departments</ListGroup.Item>
-          <ListGroup.Item>/departments/id/employees – list all active employees for a specific department</ListGroup.Item>
-          <ListGroup.Item>/departments/id/managers – history of managers by department</ListGroup.Item>
-        </ListGroup>
-        <br />
-        <h5>Salaries</h5>
-        <p>GET</p>
-        <ListGroup>
-          <ListGroup.Item>/salaries/highest – top 10 employees with best salary</ListGroup.Item>
-          <ListGroup.Item>/salaries/average-by-department – average salary by department</ListGroup.Item>
-        </ListGroup>
-        <br />
-        <h5>Statistics</h5>
-        <p>GET</p>
-        <ListGroup>
-          <ListGroup.Item>/stats/employees-per-department – quantification of employees by department</ListGroup.Item>
-          <ListGroup.Item>/stats/gender-distribution – gender distribution by department</ListGroup.Item>
-          <ListGroup.Item>/stats/title-history – evolution of common titles throughout the company</ListGroup.Item>
-        </ListGroup>
-        <br />
-      </Container>
-    </div>
+    </Container>
   );
 };
 

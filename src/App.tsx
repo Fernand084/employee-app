@@ -16,18 +16,32 @@ const App = () => {
   return (
     <Container>
       <Router>
-        <Navbar className="bg-body-tertiary">
-          <Nav>
-            <Nav.Link href="/">Home</Nav.Link> 
-            <Nav.Link href="/about">About</Nav.Link> 
-            <Nav.Link href="/users">Users</Nav.Link> 
-            <Nav.Link href="/employees">Employees</Nav.Link> 
-            <Nav.Link href="/departments">Departments</Nav.Link>
-          </Nav>
-        </Navbar>
+
+        <Navbar expand="lg" className="navbar-dark bg-primary shadow-sm sticky-top">
+          <Container>
+              <Navbar.Brand href="/departments" className="fw-bold fs-3">
+                  <i className="bi bi-people-fill me-2"></i>
+                  EmployeeHub
+              </Navbar.Brand>
+              <Navbar.Toggle />
+              <Navbar.Collapse>
+                  <Nav className="ms-auto">
+                      <Nav.Link href="/" className="fw-semibold px-3 rounded-pill mx-1 hover-bg-light">
+                          <i className="bi bi-house-door me-1"></i>Home
+                      </Nav.Link>
+                      <Nav.Link href="/departments" className="fw-semibold px-3 rounded-pill mx-1">
+                          <i className="bi bi-building me-1"></i>Departments
+                      </Nav.Link>
+                      <Nav.Link href="/about" className="fw-semibold px-3 rounded-pill mx-1">
+                          <i className="bi bi-people me-1"></i>About
+                      </Nav.Link>
+                  </Nav>
+              </Navbar.Collapse>
+          </Container>
+      </Navbar>
 
         <Routes>
-          <Route path = "/" element={<Home />} />
+          <Route path = "/" element={<Home/>} />
           <Route path = "/about" element={<About />} />
           <Route path = "/users" element={<Users />} />
           <Route path = "/employees" element={<Employees_page />} />

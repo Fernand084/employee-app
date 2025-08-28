@@ -73,47 +73,130 @@ const Employees = () => {
         if(error) return <p>{error}</p>
 
         return (
-            <div>
-                <br />
-                <h2>Employees</h2>
-                <br />
+            <Container fluid className="py-5 bg-light min-vh-100">
                 <Container>
-                    <Row md="auto" className="justify-content-md-center">
-                        <Col >
-                            {pagination()}
-                        </Col>
-                    </Row>
-                </Container>
-                
-                <br/>
-                <Container>
-                    <Row className="justify-content-md-center">
-                        <Col lg={6}>
-                            <ListGroup className="pagination">
-                                {employees.map((Employee,index) => (
-                                <ListGroup.Item className="page-item" key={Employee.id}>
-                                    <a key={index} className="page-link" href ={`/employees/${Employee.id}`}>
-                                        {Employee.firstName}&nbsp;{Employee.lastName}&nbsp;
-                                    </a>
-                                    <p>Hire date:&nbsp;{Employee.hireDate ? `${Employee.hireDate[2]}/${Employee.hireDate[1]}/${Employee.hireDate[0]}` : '--'}</p>
-                                </ListGroup.Item>
+                    <Row className="justify-content-center">
+                        <Col xl={10}>
+                            {/* Header Principal */}
+                            <div className="card shadow-lg border-0 rounded-4 mb-5 overflow-hidden">
+                                <div className="bg-primary bg-gradient text-white p-5">
+                                    <div className="d-flex align-items-center">
+                                        <div className="bg-white bg-opacity-25 rounded-circle p-3 me-4">
+                                            <i className="bi bi-people-fill fs-1 text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h1 className="display-5 fw-bold mb-2">All Employees</h1>
+                                            <p className="fs-5 opacity-90 mb-0">Company-wide employee directory</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Controls Section */}
+                            <div className="card shadow-sm border-0 rounded-4 mb-4">
+                                <div className="card-body p-4">
+                                    <Row className="align-items-center">
+                                        <Col md={6}>
+                                            <h5 className="fw-bold text-primary mb-0">
+                                                <i className="bi bi-people-fill me-2"></i>
+                                                Employee Directory
+                                            </h5>
+                                            <p className="text-muted mb-0 small">
+                                                Showing {employees.length} employees
+                                            </p>
+                                        </Col>
+                                        <Col md={6} className="text-md-end">
+                                            {/* Search Bar (not working) */}
+                                            <div className="input-group" style={{maxWidth: '300px', marginLeft: 'auto'}}>
+                                                <span className="input-group-text bg-light border-end-0">
+                                                    <i className="bi bi-search text-muted"></i>
+                                                </span>
+                                                <input 
+                                                    type="text" 
+                                                    className="form-control border-start-0 bg-light" 
+                                                    placeholder="Search employees..."
+                                                />
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </div>
+
+                            {/* Pagination Top */}
+                            <div className="d-flex justify-content-center mb-4">
+                                <div className="card shadow-sm border-0 rounded-pill px-2">
+                                    <div className="card-body py-2 px-3">
+                                        {pagination()}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Employee Cards */}
+                            <div className="card shadow-lg border-0 rounded-4 overflow-hidden">
+                                <div className="list-group list-group-flush">
+                                    {employees.map((Employee, index) => (
+                                        <div key={Employee.id} className="list-group-item border-0 py-4">
+                                            <Row className="align-items-center">
+                                                <Col xs="auto">
+                                                    {/* Avatar con iniciales */}
+                                                    <div 
+                                                        className="bg-primary rounded-circle d-flex align-items-center justify-content-center text-white fw-bold"
+                                                        style={{width: '60px', height: '60px'}}
+                                                    >
+                                                        <span className="fs-5">
+                                                            {Employee.firstName?.charAt(0)}{Employee.lastName?.charAt(0)}
+                                                        </span>
+                                                    </div>
+                                                </Col>
+                                                <Col>
+                                                    <a 
+                                                        href={`/employees/${Employee.id}`}
+                                                        className="text-decoration-none"
+                                                    >
+                                                        <h5 className="text-primary fw-bold mb-1">
+                                                            {Employee.firstName} {Employee.lastName}
+                                                        </h5>
+                                                    </a>
+                                                    <div className="d-flex align-items-center text-muted">
+                                                        <i className="bi bi-calendar3 me-1"></i>
+                                                        <small>
+                                                            Hire Date: <span className="fw-semibold">
+                                                                {Employee.hireDate ? 
+                                                                    `${Employee.hireDate[2]}/${Employee.hireDate[1]}/${Employee.hireDate[0]}` 
+                                                                    : 'Not specified'
+                                                                }
+                                                            </span>
+                                                        </small>
+                                                    </div>
+                                                    
+                                                    {/* Badge de antigüedad */}
+                                                    {Employee.hireDate && (
+                                                        <div className="mt-2">
+                                                            <span className="badge bg-info bg-opacity-15 text-info rounded-pill">
+                                                                <i className="bi bi-clock me-1"></i>
+                                                                {new Date().getFullYear() - Employee.hireDate[0]} years
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </Col>
+                                            </Row>
+                                        </div>
                                     ))}
-                            </ListGroup>
+                                </div>
+                            </div>
+
+                            {/* Pagination Bottom */}
+                            <div className="d-flex justify-content-center mt-4">
+                                <div className="card shadow-sm border-0 rounded-pill px-2">
+                                    <div className="card-body py-2 px-3">
+                                        {pagination()}
+                                    </div>
+                                </div>
+                            </div>
                         </Col>
                     </Row>
                 </Container>
-                
-                <br/>
-                <Container>
-                    <Row md="auto" className="justify-content-md-center">
-                        <Col >
-                            {pagination()}
-                        </Col>
-                    </Row>
-                </Container>
-                <br/>
-            </div>
-            
+            </Container>
         );
 }
 
