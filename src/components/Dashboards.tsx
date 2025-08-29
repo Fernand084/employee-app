@@ -1141,11 +1141,10 @@ export function EmployeeSalaryHistory({id}: SalaryProps){
     if(loading) return <p>Loading...</p>
     if(error) return <p>{error}</p>
 
-    const pivot = years.map(y =>
-    ({
-        year:y,
+    const pivot = years.map(y => ({
+        year: y,
         amount: salaries.find((s) => s.fromDate[0] == y && s.id == id)?.amount
-    }));
+    })).filter(p => p.amount !== undefined);
 
 
     return(
@@ -1202,7 +1201,7 @@ export function EmployeeSalaryHistory({id}: SalaryProps){
                                         <i className="bi bi-trending-up text-warning fs-1 mb-3"></i>
                                         <h4 className="fw-bold text-warning mb-1">
                                             {pivot && pivot.length > 0 ? 
-                                                `${formatCurrency(Math.max(...pivot.map(p => p.amount!)))}` : 
+                                                `${formatCurrency(Math.max(...pivot.map(p => p.amount ?? 0)))}` : 
                                                 'N/A'
                                             }
                                         </h4>
@@ -1213,9 +1212,9 @@ export function EmployeeSalaryHistory({id}: SalaryProps){
                                     <div className="text-center p-4 bg-info bg-opacity-10 rounded-3">
                                         <i className="bi bi-arrow-up-right text-info fs-1 mb-3"></i>
                                         <h4 className="fw-bold text-info mb-1">
-                                            {pivot && pivot.length > 1 ? 
-                                                `+${(((pivot[pivot.length - 1].amount! - pivot[0].amount!) / pivot[0].amount!) * 100).toFixed(1)}%` : 
-                                                'N/A'
+                                            {pivot && pivot.length > 1 && pivot[0].amount !== undefined && pivot[pivot.length - 1].amount !== undefined
+                                                ? `+${(((pivot[pivot.length - 1].amount! - pivot[0].amount!) / pivot[0].amount!) * 100).toFixed(1)}%`
+                                                : 'N/A'
                                             }
                                         </h4>
                                         <p className="text-muted mb-0">Total Growth</p>
