@@ -114,7 +114,7 @@ export default function GenderDistribution({id}:Props) {
   return (
     <Container fluid className="py-5 bg-light min-vh-100">
         <Row className="justify-content-center">
-            <Col xl={10}>
+            <Col xl={12}>
                 {/* Card principal */}
                 <div className="card shadow-lg border-0 rounded-4 overflow-hidden">
                     {/* Header del card */}
@@ -372,7 +372,7 @@ export function ActiveEmployeesByDepartment(){
     return(
         <Container fluid className="py-5 bg-light min-vh-100">
             <Row className="justify-content-center">
-                <Col xl={10}>
+                <Col xl={12}>
                     {/* Card principal */}
                     <div className="card shadow-lg border-0 rounded-4 overflow-hidden">
                         {/* Header del card */}
@@ -639,7 +639,7 @@ export function AverageSalaryByDepartment(){
     return(
         <Container fluid className="py-5 bg-light min-vh-100">
             <Row className="justify-content-center">
-                <Col xl={10}>
+                <Col xl={12}>
                     {/* Card principal */}
                     <div className="card shadow-lg border-0 rounded-4 overflow-hidden">
                         {/* Header del card */}
@@ -685,7 +685,7 @@ export function AverageSalaryByDepartment(){
                                         <p className="text-muted mb-0">Departments</p>
                                     </div>
                                 </Col>
-                                <Col md={3}>
+                                <Col md={4}>
                                     <div className="text-center p-4 bg-warning bg-opacity-10 rounded-3">
                                         <i className="bi bi-trophy text-warning fs-1 mb-3"></i>
                                         <h4 className="fw-bold text-warning mb-1">
@@ -697,7 +697,7 @@ export function AverageSalaryByDepartment(){
                                         <p className="text-muted mb-0">Highest Avg</p>
                                     </div>
                                 </Col>
-                                <Col md={3}>
+                                <Col md={4}>
                                     <div className="text-center p-4 bg-info bg-opacity-10 rounded-3">
                                         <i className="bi bi-calculator text-info fs-1 mb-3"></i>
                                         <h4 className="fw-bold text-info mb-1">
@@ -880,7 +880,7 @@ export function TitlesHistoryByDepartment(){
     return(
         <Container fluid className="py-5 bg-light min-vh-100">
             <Row className="justify-content-center">
-                <Col xl={10}>
+                <Col xl={12}>
                     {/* Card principal */}
                     <div className="card shadow-lg border-0 rounded-4 overflow-hidden">
                         {/* Header del card */}
