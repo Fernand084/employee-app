@@ -13,7 +13,7 @@ const Home: React.FC = () => {
             {/* Hero Header */}
             <div className="card shadow-lg border-0 rounded-4 mb-5 overflow-hidden">
               <div className="bg-gradient position-relative" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
-                <div className="text-white p-5">
+                <div className="text-black p-5">
                   <div className="d-flex align-items-center">
                     <div className="bg-white bg-opacity-25 rounded-circle p-4 me-4">
                       <i className="bi bi-code-slash fs-1 text-white"></i>
